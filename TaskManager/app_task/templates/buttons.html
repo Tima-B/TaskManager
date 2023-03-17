@@ -53,7 +53,7 @@
         </a>
         <a id="btn-{{model}}-f-off" href="{% my_g get_par view.url_filt "off" view.page_kwarg "1" %}"
         class="btn btn-sm btn-outline-secondary {% if view.url_filt|add:"=off" in get_par %}active{% endif %}"
-        title="Только не выполненные, в работе">
+        title="Только не завершенные">
             В работе
         </a>
     </div>
@@ -66,13 +66,13 @@
     {% endif %}
     {% if btn == "add" and perms.add %}
         <a id="btn-{{model}}-add" href={% url "add" model=model %}{% my_g "" model=view.kwargs.model pk=view.kwargs.pk %}
-        class="btn btn-sm btn-outline-primary">
+        class="btn btn-sm btn-outline-success">
             Добавить
         </a>
     {% endif %}
     {% if btn == "edit" and perms.edit %}
         <a id="btn-{{model}}-edit" href={% url "oper" oper="edit" model=model pk=pk %}
-        class="btn btn-sm btn-outline-success">
+        class="btn btn-sm btn-outline-primary">
             Редактировать
         </a>
     {% endif %}
@@ -99,14 +99,14 @@
 {% for btn in btn_min.split %}
     {% if btn == "add" and perms.add %}
         <a id="btn-{{model}}-m-add" href={% url "add" model=model %}{% my_g "" model=view.kwargs.model pk=view.kwargs.pk %}
-        class="btn btn-sm btn-outline-primary"
+        class="btn btn-sm btn-outline-success"
         title="Добавить">
             <i class="bi bi-plus-circle-fill"></i>
         </a>
     {% endif %}
     {% if btn == "edit" and perms.edit %}
         <a id="btn-{{model}}-m-edit" href={% url "oper" oper="edit" model=model pk=pk %} 
-        class="btn btn-sm btn-outline-success"
+        class="btn btn-sm btn-outline-primary"
         title="Редактировать">
             <i class="bi bi-pencil"></i>
         </a>

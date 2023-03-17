@@ -268,7 +268,7 @@ LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "/"
 
 # Настройка пагинации
-PAGINATE_BY = 5  # элементов на странице
+PAGINATE_BY = 10  # элементов на странице
 # Если на последней странице элементов <= orphans, то добавляем их к предыдущей
 PAGINATE_ORPHANS = 2
 

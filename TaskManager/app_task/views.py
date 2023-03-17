@@ -829,16 +829,16 @@ class Index(TemplateView):
                 objs.append(SprintTemplate(self, "list"))
                 objs.append(TaskTemplate(self, "list"))
             case Proj.META.url_name, 0:
-                context["title"] = "Все проекты"
-                context["header"] = "Все проекты"
+                context["title"] = "Список проектов"
+                context["header"] = "Список проектов"
                 objs.append(ProjTemplate(self, "list"))
             case Sprint.META.url_name, 0:
-                context["title"] = "Все спринты"
-                context["header"] = "Все спринты"
+                context["title"] = "Список спринтов"
+                context["header"] = "Список спринтов"
                 objs.append(SprintTemplate(self, "list"))
             case Task.META.url_name, 0:
-                context["title"] = "Все задачи"
-                context["header"] = "Все задачи"
+                context["title"] = "Список задач"
+                context["header"] = "Список задач"
                 objs.append(TaskTemplate(self, "list"))
             case Proj.META.url_name, _:
                 context["title"] = "Просмотр проекта"

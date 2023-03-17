@@ -28,10 +28,11 @@
         {% if view.request.user.is_authenticated %}
             <span class="mx-1">{{ view.request.user.username }}:</span>
             <a href="{% url "login" %}" class="mx-1"
-            title="Смена пользователя">
-                Смена
+            title="Сменить пользователя">
+                Сменить пользователя
             </a>|
-            <a href="{% url "logout" %}" class="mx-1">
+            <a href="{% url "logout" %}" class="mx-1"
+                title="Перейти в режим Только просмотр">
                 Выход
             </a>
         {% else %}
@@ -52,7 +53,7 @@
     {% endif %}
 
     {# вывод основной информации #}
-    <h1>{% block header %}Base page{% endblock header %}</h1>
+    <h2>{% block header %}Base page{% endblock header %}</h2>
     {% block content %}{% endblock content %}
     
     <div style="height: 50px;" class="">&nbsp;</div>

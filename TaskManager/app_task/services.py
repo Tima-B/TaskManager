@@ -124,16 +124,16 @@ def gen_data(cnt=0, close=0, clear=False, parent=False, clear_user=False) -> Non
 
     Args:
         cnt (int, optional): Количество генерируемых проектов.
-            Defaults to 0.
+            Значение по умолчанию - 0.
         close (int, optional): Процент закрытия проектов и спринтов.
-            Defaults to 0.
+            Значение по умолчанию - 0.
         clear (bool, optional): Очищать базу перед генерацией.
-            Defaults to False.
+            Значение по умолчанию - False.
         parent (bool, optional): Создавать зависимые задачи.
-            Defaults to False.
+            Значение по умолчанию - False.
         clear_user (bool, optional): Удалить и создать заново спецпользователей для
             генерируемых данных.
-            Defaults to False.
+            Значение по умолчанию - False.
 
     Как работаает:
         Создётся указанное число проектов.
@@ -182,9 +182,9 @@ def gen_data(cnt=0, close=0, clear=False, parent=False, clear_user=False) -> Non
         users = user_model.objects.filter(username__startswith=user_start)
 
     if cnt and not users.exists():
-        log.info("Создание 5 пользователей")
+        log.info("Создание 3 пользователей")
         qp = Permission.objects.filter(content_type__app_label="app_task")
-        for i in range(5):
+        for i in range(3):
             username = f"{user_start}{i}"
             user = user_model.objects.create_user(username, "", user_pass)
             user.first_name = user_pass
