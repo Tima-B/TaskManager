@@ -7,9 +7,9 @@ from django.db.models import Model
 LOG = logging.getLogger(__name__)
 
 
+# Отправка письма авторам и исполнителям по полученному сигналу от модели.
 def send_email_message(sender: Model, **kwargs) -> None:
-    """Отправка письма авторам и исполнителям по полученому сигналу от модели.
-
+    """
     Args:
         sender (Model): Модель отправившая сигнал
     """

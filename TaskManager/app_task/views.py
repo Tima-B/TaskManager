@@ -8,13 +8,10 @@ from django.contrib.auth import get_user_model
 import logging
 from django.contrib import messages
 
-# from django.contrib.messages.views import SuccessMessageMixin
-
 from django.views.generic import (
     View,
     TemplateView,
     ListView,
-    # DetailView,
     UpdateView,
     CreateView,
     DeleteView,
@@ -28,6 +25,7 @@ MY_OPER = settings.MY_OPER
 LOG = logging.getLogger(__name__)
 
 
+# Обработка ошибок
 def error(req: HttpRequest, *args, **kwargs) -> HttpResponse:
     status = int(kwargs.get("status", 400))
     title = kwargs.get("title", "Ошибка")
@@ -48,21 +46,16 @@ def error(req: HttpRequest, *args, **kwargs) -> HttpResponse:
 
 def ProjTemplate(self: TemplateView, oper: str) -> View:
     """Создание объекта с шаблоном для модели Proj.
-    Вариант шаблона зависит от аргумета oper.
-
     Args:
         self (TemplateView): Родительский объект шаблона
-        oper (str): Название текущей операции
-
+        oper = 'list' -> ListView
+        oper = 'detail' -> ListView
+        oper = 'add' -> CreateView
+        oper = 'delete' -> DeleteView
+        oper = 'edit' -> UpdateView
 
     Returns:
         View: Объект шаблона в зависимости от аргумента oper.
-
-    oper = 'list' -> ListView
-    oper = 'detail' -> ListView
-    oper = 'add' -> CreateView
-    oper = 'delete' -> DeleteView
-    oper = 'edit' -> UpdateView
     """
 
     model = Proj
@@ -223,23 +216,7 @@ def ProjTemplate(self: TemplateView, oper: str) -> View:
 
 
 def SprintTemplate(self: TemplateView, oper: str) -> View:
-    """Создание объекта с шаблоном для модели Sprint.
-    Вариант шаблона зависит от аргумета oper.
-
-    Args:
-        self (TemplateView): Родительский объект шаблона
-        oper (str): Название текущей операции
-
-
-    Returns:
-        View: Объект шаблона в зависимости от аргумента oper.
-
-    oper = 'list' -> ListView
-    oper = 'detail' -> ListView
-    oper = 'add' -> CreateView
-    oper = 'delete' -> DeleteView
-    oper = 'edit' -> UpdateView
-    """
+    # Создание объекта с шаблоном для модели Sprint.
 
     model = Sprint
     par = self.request.GET.dict()
@@ -404,22 +381,7 @@ def SprintTemplate(self: TemplateView, oper: str) -> View:
 
 
 def TaskTemplate(self: TemplateView, oper: str) -> View:
-    """Создание объекта с шаблоном для модели Task.
-    Вариант шаблона зависит от аргумета oper.
-
-    Args:
-        self (TemplateView): Родительский объект шаблона
-        oper (str): Название текущей операции
-
-    Returns:
-        View: Объект шаблона в зависимости от аргумента oper.
-
-    oper = 'list' -> ListView
-    oper = 'detail' -> ListView
-    oper = 'add' -> CreateView
-    oper = 'delete' -> DeleteView
-    oper = 'edit' -> UpdateView
-    """
+    # Создание объекта с шаблоном для модели Task.
 
     model = Task
     par = self.request.GET.dict()
@@ -660,19 +622,7 @@ def TaskTemplate(self: TemplateView, oper: str) -> View:
 
 
 def TaskStepTemplate(self: TemplateView, oper: str) -> View:
-    """Создание объекта с шаблоном для модели TaskStep.
-    Вариант шаблона зависит от аргумета oper.
-
-    Args:
-        self (TemplateView): Родительский объект шаблона
-        oper (str): Название текущей операции
-
-    Returns:
-        View: Объект шаблона в зависимости от аргумента oper.
-
-    oper = (любое) -> ListView
-    oper = 'add' -> CreateView
-    """
+    # Создание объекта с шаблоном для модели TaskStep.
 
     model = TaskStep
     par = self.request.GET.dict()

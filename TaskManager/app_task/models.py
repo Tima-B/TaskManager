@@ -3,7 +3,6 @@ from django.contrib.auth import get_user_model
 from datetime import date, datetime  # noqa
 from app_task.managers import TaskManager, SprintManager, ProjManager
 
-# from django.contrib import messages
 
 # Модель проекта
 class Proj(models.Model):
@@ -74,7 +73,6 @@ class Proj(models.Model):
         if self.date_end and self.date_end < self.date_end_proj:
             self.date_end = self.date_end_proj
 
-
         desc = ""
         old = type(self).objects.filter(id=self.id).first()
         # Если запись новая
@@ -118,6 +116,7 @@ class Proj(models.Model):
         url_page = "projs_p"
         url_filt = "projs_f"
         url_user = "projs_u"
+
 
 # Модель спринта
 class Sprint(models.Model):
@@ -196,7 +195,6 @@ class Sprint(models.Model):
         if self.date_end and self.date_end < self.date_end_sprint:
             self.date_end = self.date_end_sprint
 
-
         desc = ""
         old = type(self).objects.filter(id=self.id).first()
         # Если запись новая
@@ -243,6 +241,7 @@ class Sprint(models.Model):
         url_page = "sprints_p"
         url_filt = "sprints_f"
         url_user = "sprints_u"
+
 
 # Модель задачи
 class Task(models.Model):
@@ -413,6 +412,7 @@ class Task(models.Model):
         url_page = "tasks_p"
         url_filt = "tasks_f"
         url_user = "tasks_u"
+
 
 # Модель шагов задачи
 class TaskStep(models.Model):

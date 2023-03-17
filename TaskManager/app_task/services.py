@@ -2,18 +2,13 @@ from django.http.response import HttpResponseRedirect, HttpResponse  # noqa
 from django.http.request import HttpRequest  # noqa
 from rest_framework.request import Request
 from django.db.models import Model  # noqa
-from app_task.models import Proj, Sprint, Task, TaskStep # noqa
+from app_task.models import Proj, Sprint, Task, TaskStep  # noqa
 from datetime import date, timedelta
 from random import randint, choice, sample
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import User, Permission
 import logging
 from django.conf import settings
-
-# from django.contrib.contenttypes.models import ContentType  # noqa
-
-# DEBUG = settings.DEBUG
-# TIME_ZONE = settings.TIME_ZONE
 
 
 def get_perms(request: HttpRequest | Request, obj: Model = None) -> dict:
@@ -117,43 +112,16 @@ def get_perms(request: HttpRequest | Request, obj: Model = None) -> dict:
 
     return out
 
+
 # Генератор тестовых данных для базы
 def gen_data(cnt=0, close=0, clear=False, parent=False, clear_user=False) -> None:
-    """Генерация данных для базы. Даты выбираются случайно
-    в промежуте +/- 3 месяца от текущей даты.
-
-    Args:
-        cnt (int, optional): Количество генерируемых проектов.
-            Значение по умолчанию - 0.
-        close (int, optional): Процент закрытия проектов и спринтов.
-            Значение по умолчанию - 0.
-        clear (bool, optional): Очищать базу перед генерацией.
-            Значение по умолчанию - False.
-        parent (bool, optional): Создавать зависимые задачи.
-            Значение по умолчанию - False.
-        clear_user (bool, optional): Удалить и создать заново спецпользователей для
-            генерируемых данных.
-            Значение по умолчанию - False.
-
-    Как работаает:
-        Создётся указанное число проектов.
-    Для проекта указывается случайные автор, дата создания и планируемая дата закрытия.
-        Создётся удвоеное число спринтов.
-    Для спринтов - случайные автор, проект, дата создания и планируемая дата закрытия.
-        Создётся в десять раз увеличеное число задач.
-    Для задач - случайные автор, исполнитель, проект, спринт, дата создания
-    и планируемая дата закрытия.
-        Если есть зависимые задачи, попытка в поекте создать их.
-    Выбираются две случайные задачи проекта главная и зависимая.
-        Попытка закрыть указанное число спринтов.
-    Выбираются случайные даты закрытия задач (не всех) спринта и дата закрытия спринта.
-        Попытка закрыть указанное число проектов.
-    Выбирается случайные даты закрытия задач (не всех) проекта и дата закрытия проекта.
-
-    При записи данных модели проверяют их корректность:
-    - можно ли создать зависимости
-    - можно ли закрыть проект/спринт/задачу
-    - и другие.
+    """
+    cnt (int, optional): Количество генерируемых проектов.
+    close (int, optional): Процент закрытия проектов и спринтов.
+    clear (bool, optional): Очищать базу перед генерацией.
+    parent (bool, optional): Создавать зависимые задачи.
+    clear_user (bool, optional): Удалить и создать заново спецпользователей для
+        генерируемых данных.
     """
 
     old_email_backend = getattr(settings, "EMAIL_BACKEND", "")
@@ -296,6 +264,5 @@ def gen_data(cnt=0, close=0, clear=False, parent=False, clear_user=False) -> Non
     log.info("Генерация данных выполнена")
 
     settings.EMAIL_BACKEND = old_email_backend
-
 
     return

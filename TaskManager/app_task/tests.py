@@ -30,6 +30,7 @@ class Base1CorrectTestCase(TestCase):
         settings.EMAIL_BACKEND = cls.EMAIL_BACKEND
         return super().tearDown(cls)
 
+    # Тест проектов
     def test_proj(self):
         qs = Proj.objects.all()
         self.assertFalse(
@@ -53,6 +54,7 @@ class Base1CorrectTestCase(TestCase):
             "дата закрытия проекта меньше вычисленой даты закрытия",
         )
 
+    # Тест спринтов
     def test_sprint(self):
         qs = Sprint.objects.all()
         self.assertFalse(
@@ -69,9 +71,10 @@ class Base1CorrectTestCase(TestCase):
             qs.exclude(date_end=None)
             .filter(date_end__lt=F("date_end_sprint"))
             .exists(),
-            "дата закрытия спринта меньше вычисленой даты закрытия",
+            "дата закрытия спринта меньше вычисленной даты закрытия",
         )
 
+    # Тест задач
     def test_task(self):
         qs = Task.objects.all()
         self.assertFalse(
@@ -108,7 +111,7 @@ class Base1CorrectTestCase(TestCase):
         )
         self.assertFalse(
             qs.exclude(parent=None).filter(parent_id=F("id")).exists(),
-            "есть предыдущая задача, но задача ссылаетя сама на себя",
+            "есть предыдущая задача, но задача ссылается сама на себя",
         )
         self.assertFalse(
             qs.exclude(Q(parent=None) | Q(parent__parent=None)).exists(),
@@ -142,9 +145,7 @@ class Base2ModifyTestCase(TestCase):
         self.client = Client()
         return
 
-    # def tearDown(self):
-    #     return super().tearDown()
-
+    # Тест проектов
     def test_proj(self):
         model = Proj
         url_name = model.META.url_name
@@ -165,22 +166,14 @@ class Base2ModifyTestCase(TestCase):
             "в отбор попал закрытый проект",
         )
 
-        # создание проекта неавторизированым пользователем
-
-        # создание проекта авторизированым пользователем
-
-        # редактирование проекта авторизированым пользователем
-
-        # удаление проекта авторизированым пользователем
-
         self.assertFalse(False, "")
         return
 
+    # Тест спринтов
     def test_sprint(self):
         model = Sprint
         url_name = model.META.url_name
         list_template = "list_sprint.html"
-        # detail_template = "detail_sprint.html"
 
         # список спринтов
         response = self.client.get(f"/{url_name}/")
@@ -199,11 +192,11 @@ class Base2ModifyTestCase(TestCase):
         self.assertFalse(False, "")
         return
 
+    # Тест задач
     def test_task(self):
         model = Task
         url_name = model.META.url_name
         list_template = "list_task.html"
-        # detail_template = "detail_task.html"
 
         # список задач
         response = self.client.get(f"/{url_name}/")
@@ -223,7 +216,6 @@ class Base2ModifyTestCase(TestCase):
         return
 
     def test_task_step(self):
-        # qs = TaskStep.objects.all()
         self.assertFalse(False, "не появились записи при изменении задачи")
         self.assertFalse(False, "если задача закрыта то не записываем")
         self.assertFalse(False, "")

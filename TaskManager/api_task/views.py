@@ -10,29 +10,10 @@ from api_task.serializers import (
 )
 import api_task.services as functions
 
-# import app_task.services as functions
-# from rest_framework.response import Response
-# from rest_framework import permissions
-# from rest_framework import mixins
-
-
-# Create your views here.
-# class ArticleViewSet(
-#     mixins.ListModelMixin, # GET /articles
-#     mixins.CreateModelMixin, # POST /articles
-#     mixins.RetrieveModelMixin, # GET /articles/1
-#     mixins.DestroyModelMixin, # DELETE /articles/1
-#     mixins.UpdateModelMixin, # PUT /articles/1
-#     viewsets.GenericViewSet
-# ):
-
 
 class ProjApi(
     mixins.ListModelMixin,  # GET /articles
     mixins.RetrieveModelMixin,  # GET /articles/1
-    # mixins.CreateModelMixin, # POST /articles
-    # mixins.DestroyModelMixin, # DELETE /articles/1
-    # mixins.UpdateModelMixin, # PUT /articles/1
     viewsets.GenericViewSet,
 ):
     model = Proj
@@ -47,9 +28,6 @@ class ProjApi(
 class SprintApi(
     mixins.ListModelMixin,  # GET /articles
     mixins.RetrieveModelMixin,  # GET /articles/1
-    # mixins.CreateModelMixin, # POST /articles
-    # mixins.DestroyModelMixin, # DELETE /articles/1
-    # mixins.UpdateModelMixin, # PUT /articles/1
     viewsets.GenericViewSet,
 ):
     model = Sprint
@@ -64,9 +42,6 @@ class SprintApi(
 class TaskApi(
     mixins.ListModelMixin,  # GET /articles
     mixins.RetrieveModelMixin,  # GET /articles/1
-    # mixins.CreateModelMixin,  # POST /articles
-    # mixins.DestroyModelMixin,  # DELETE /articles/1
-    # mixins.UpdateModelMixin,  # PUT /articles/1
     viewsets.GenericViewSet,
 ):
     model = Task
@@ -81,9 +56,6 @@ class TaskApi(
 class TaskStepApi(
     mixins.ListModelMixin,  # GET /articles
     mixins.RetrieveModelMixin,  # GET /articles/1
-    # mixins.CreateModelMixin, # POST /articles
-    # mixins.DestroyModelMixin, # DELETE /articles/1
-    # mixins.UpdateModelMixin, # PUT /articles/1
     viewsets.GenericViewSet,
 ):
     model = TaskStep
