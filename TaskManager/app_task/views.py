@@ -780,38 +780,35 @@ class Index(TemplateView):
                 objs.append(TaskTemplate(self, "list"))
             case Proj.META.url_name, 0:
                 context["title"] = "Список проектов"
-                context["header"] = "Список проектов"
+                context["header"] = "Список"
                 objs.append(ProjTemplate(self, "list"))
             case Sprint.META.url_name, 0:
                 context["title"] = "Список спринтов"
-                context["header"] = "Список спринтов"
+                context["header"] = "Список"
                 objs.append(SprintTemplate(self, "list"))
             case Task.META.url_name, 0:
                 context["title"] = "Список задач"
-                context["header"] = "Список задач"
+                context["header"] = "Список"
                 objs.append(TaskTemplate(self, "list"))
             case Proj.META.url_name, _:
                 context["title"] = "Просмотр проекта"
-                context["header"] = "Просмотр проекта"
+                context["header"] = "Просмотр"
                 objs.append(ProjTemplate(self, "detail"))
                 objs.append(SprintTemplate(self, "list"))
                 objs.append(TaskTemplate(self, "list"))
             case Sprint.META.url_name, _:
                 context["title"] = "Просмотр спринта"
-                context["header"] = "Просмотр спринта"
+                context["header"] = "Просмотр"
                 objs.append(SprintTemplate(self, "detail"))
-                # objs.append(ProjTemplate(self, "detail"))
                 objs.append(TaskTemplate(self, "list"))
             case Task.META.url_name, _:
                 context["title"] = "Просмотр задачи"
-                context["header"] = "Просмотр задачи"
+                context["header"] = "Просмотр"
                 objs.append(TaskTemplate(self, "detail"))
-                # objs.append(SprintTemplate(self, "detail"))
-                # objs.append(ProjTemplate(self, "detail"))
                 objs.append(TaskStepTemplate(self, "list"))
             case TaskStep.META.url_name, _:
                 context["title"] = "Просмотр задачи"
-                context["header"] = "Просмотр задачи"
+                context["header"] = "Просмотр"
                 objs.append(TaskTemplate(self, "detail"))
                 objs.append(TaskStepTemplate(self, "list"))
             case _:

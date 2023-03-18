@@ -180,10 +180,6 @@ LOGGING = {
         "require_debug_false": {
             "()": "django.utils.log.RequireDebugFalse",
         },
-        # "full": {
-        #     "()": "django.utils.log.CallbackFilter",
-        #     "callback": lambda rec: True,
-        # },
     },
     "formatters": {
         "verbose": {
@@ -224,11 +220,6 @@ LOGGING = {
             "handlers": ["console"],
             "propagate": False,
         },
-        # "app_task": {
-        #     "level": "DEBUG",
-        #     "handlers": ["console"],
-        #     "propagate": False,
-        # },
         "app_task.services.perms": {
             "level": "INFO",
             "handlers": ["console_debug"],
