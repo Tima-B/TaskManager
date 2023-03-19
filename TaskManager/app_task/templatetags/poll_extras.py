@@ -4,22 +4,11 @@ from django.db.models import Model
 from app_task.services import get_perms
 import re
 
-# from django.contrib.auth import get_user_model
-
 register = template.Library()
-
 
 @register.simple_tag(name="my_g", takes_context=True)
 def my_g(context, get_par: str, *args, **kwargs):
-    """Пересборка и добавление GET параметров
-    get_par - исходная строка GET параметров типа ?par1=val1&par2=val2
-        может быть пустой
-    args - список, перебор парами:
-        первый элемент - имя параметра
-        второй - значение
-    kwargs - словарь {имя_параметра: значение}
-    -> Ответ - строка GET параметров
-    """
+
     inp = get_par.replace("?", "").replace(" ", "")
 
     gen = iter(args)
@@ -40,11 +29,7 @@ def my_g(context, get_par: str, *args, **kwargs):
 
 @register.simple_tag(takes_context=True)
 def my_gd(context, get_par: str, *args):
-    """Удаление параметров из GET строки
-    get_par - исходная строка GET
-    args - список имён параметров для удаления
-    -> Ответ - строка GET параметров
-    """
+
     inp = get_par.replace("?", "").replace(" ", "")
     args = tuple(map(str, args))
 
@@ -59,11 +44,7 @@ def my_gd(context, get_par: str, *args):
 
 @register.simple_tag(takes_context=True)
 def my_gf(context, get_par: str, *args):
-    """Отбор определённых параметров из строки
-    get_par - исходная строка GET
-    args - список имён параметров для отбора
-    -> Ответ - строка GET параметров
-    """
+
     inp = get_par.replace("?", "").replace(" ", "")
     args = tuple(map(str, args))
 
@@ -126,7 +107,7 @@ def my_gg(value, get_par):
 def my_ds(value: int, par):
     """Склонение чисел
     value - целое число
-    par - строка вида "рубль,рубля,рублей"
+    par - строка вида "день,дня,дней"
     """
     lst = str(par).split(",") + ["", ""]
 
